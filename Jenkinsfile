@@ -1,22 +1,18 @@
 pipeline {
-    environment {
         DOCKER_IMAGE_NAME="Dockerfile"
-    }
     agent {
         kubernetes {
             yaml """
         apiVersion: v1
-        kind: Cluster
+        kind: Pod
+        metadata:
+            name: centos-pod
         spec:
-            cluster-version: 1.16.8
-            machine-type: n1-standard-2
-            nodes: 2
             serviceAccountName: jenkins
             containers:
-            - name: train-app
-              image: $DOCKER_IMAGE_NAME
-             //aici trebuie sa termin configurarea pt kubernetes dar nu stiu daca trebuie onfiguratie de pod sau cluster
-
+                - name: uses-docker-image
+                  image: $DOCKER_IMAGE_NAME
+                  command: [ "echo", "SUCCESS" ]
         """
         }
     }
