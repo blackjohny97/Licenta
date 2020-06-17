@@ -20,7 +20,9 @@ pipeline {
           requests:
             memory: "100Mi"
     """
-       }
+        }
+    }
+    stages{
         stage('build docker image') {
             when{
                 branch 'master'
