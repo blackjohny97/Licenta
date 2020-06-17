@@ -5,6 +5,7 @@ pipeline {
         kubernetes {
             label 'train-schedule-app'
             yamlFile 'pod.yml'
+        }
     }
     stages{
         stage('build docker image') {
