@@ -12,7 +12,7 @@ pipeline {
       serviceAccountName: jenkins
       containers:
       - name: uses-docker-image
-        image: $DOCKER_IMAGE_NAME
+        image: 'Dockerfile'
         command: [ "echo", "SUCCESS" ]
         resources:
           limits:
