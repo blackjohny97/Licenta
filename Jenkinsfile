@@ -13,9 +13,11 @@ pipeline {
             }
             steps {
                 //script{
+                kubeconfig{
                     configs: 'pod.yml'
                     enableConfigSubstitution: true
                // }
+                }
             }
         }
         stage('build docker image') {
