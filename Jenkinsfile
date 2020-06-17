@@ -1,20 +1,8 @@
 pipeline {
-        DOCKER_IMAGE_NAME="Dockerfile"
-    agent {
-        kubernetes {
-            yaml """
-        apiVersion: v1
-        kind: Pod
-        metadata:
-            name: centos-pod
-        spec:
-            serviceAccountName: jenkins
-            containers:
-                - name: uses-docker-image
-                  image: $DOCKER_IMAGE_NAME
-                  command: [ "echo", "SUCCESS" ]
-        """
-        }
+    agent any
+    environment {
+
+        DOCKER_IMAGE_NAME = "Dockerfile"
     }
     stages {
         stage('build docker image') {
@@ -23,6 +11,12 @@ pipeline {
                 image.inside{
                        sh 'echo DONE!!!'
                 }
+            }
+        }
+        stage('build pod') {
+            steps {
+                configs: 'pod.yml'
+                enableConfigSubstitution: true
             }
         }
         stage('Deploy'){
