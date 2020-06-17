@@ -12,10 +12,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script{
+                //script{
                     configs: 'pod.yml'
                     enableConfigSubstitution: true
-                }
+               // }
             }
         }
         stage('build docker image') {
