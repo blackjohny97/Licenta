@@ -5,18 +5,28 @@ pipeline {
         DOCKER_IMAGE_NAME = "Dockerfile"
     }
     stages {
-        stage('build docker image') {
+        stage('build pod') {
+            when{
+                branch 'master'
+            }
             steps {
-                image=docker.build(DOCKER_IMAGE_NAME)
-                image.inside{
-                       sh 'echo DONE!!!'
+                script{
+                    configs: 'pod.yml'
+                    enableConfigSubstitution: true
                 }
             }
         }
-        stage('build pod') {
+        stage('build docker image') {
+            when{
+                branch 'master'
+            }
             steps {
-                configs: 'pod.yml'
-                enableConfigSubstitution: true
+                script{
+                    image=docker.build(DOCKER_IMAGE_NAME)
+                    image.inside{
+                           sh 'echo DONE!!!'
+                    }
+                }
             }
         }
         stage('Deploy'){
