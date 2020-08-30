@@ -2,7 +2,7 @@
 pipeline {
    agent any
    environment {
-       registry = "magalixcorp/k8scicd"
+       registry = "blackjohnny97/golang-image"
        GOCACHE = "/tmp"
    }
    stages {
