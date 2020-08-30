@@ -43,6 +43,7 @@ pipeline {
                registryCredential = 'dockerhub'
            }
            steps{
+               docker login -u "blackjohnny97" -p "C@li4nialove1997" docker.io
                script {
                    def appimage = docker.build registry + ":$BUILD_NUMBER"
                    docker.withRegistry( '', registryCredential ) {
