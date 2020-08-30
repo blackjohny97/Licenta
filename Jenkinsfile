@@ -23,11 +23,6 @@ pipeline {
            }
        }
        stage('Test') {
-           agent {
-               docker {
-                   image 'golang'
-               }
-           }
            steps {
                // Create our project directory.
                sh 'cd ${GOPATH}/src'
