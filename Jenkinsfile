@@ -2,7 +2,7 @@
 pipeline {
    agent any
    environment {
-       registry = "blackjohnny97/golang-image"
+       registry = "blackjohnny97/golang-image:latest"
        GOCACHE = "/tmp"
    }
    stages {
