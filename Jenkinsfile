@@ -43,9 +43,8 @@ pipeline {
                registryCredential = 'dockerhub'
            }
            steps{
-               docker login -u "blackjohnny97" -p "" docker.io
                script {
-                   def appimage = docker.build registry + ":$BUILD_NUMBER"
+                   def appimage = docker.build registry
                    docker.withRegistry( '', registryCredential ) {
                        appimage.push()
                        appimage.push('latest')
