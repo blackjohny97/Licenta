@@ -1,4 +1,5 @@
 golang
-urllib3 == 1.25.10
-chardet == 3.0.4
-python3
+urllib3 ~= 1.25.10
+chardet ~= 3.0.4
+python ~= 3.8.5
+python-dateutil ~= 2.2
